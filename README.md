@@ -1,4 +1,4 @@
-# 📚 AI Knowledge Base Chat (RAG)
+# 📚 knowledgebase-rag - AI Knowledge Base Chat (RAG)
 
 > **Learning Retrieval-Augmented Generation (RAG) by building the entire
 > pipeline from scratch.**
