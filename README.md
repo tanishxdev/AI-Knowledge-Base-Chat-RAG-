@@ -1,47 +1,56 @@
-# 🤖 AI CLI Assistant
+# 📚 AI Knowledge Base Chat (RAG)
 
-A command-line AI assistant capable of answering questions from a custom knowledge base using semantic retrieval and Large Language Models.
+An end-to-end Retrieval-Augmented Generation (RAG) application built from scratch using Node.js.
 
-The assistant retrieves relevant information before generating responses, making answers more reliable and grounded.
+Instead of relying solely on an LLM's pretrained knowledge, this application retrieves relevant information from a custom Markdown knowledge base using semantic search before generating responses.
 
 ---
 
 ## 🚀 Features
 
-- Interactive CLI
-- Semantic Search
-- Knowledge Base Chat
-- Source Attribution
+- Chat with Markdown documents
+- Semantic Search using Embeddings
+- Cosine Similarity Retrieval
+- Recursive Text Chunking
 - Vector Embedding Cache
-- Prompt Engineering
-- Modular AI Pipeline
-- Hallucination Reduction
+- Source Citation
+- Interactive CLI Chat
+- Hallucination Reduction using Retrieval
+- Modular Architecture
+- Groq LLM Integration
+- Gemini Embedding API
 
 ---
 
-## 🏗 System Flow
+## 🏗 Architecture
 
 ```
 
-User Question
-      │
-      ▼
-Generate Query Embedding
-      │
-      ▼
-Similarity Search
-      │
-      ▼
-Retrieve Top Chunks
-      │
-      ▼
-Prompt Builder
-      │
-      ▼
-Groq LLM
-      │
-      ▼
-Answer
+                Markdown Files
+                      │
+                      ▼
+             Markdown Loader
+                      │
+                      ▼
+         Recursive Text Splitter
+                      │
+                      ▼
+          Gemini Embedding Model
+                      │
+                      ▼
+          In-Memory Vector Store
+                      │
+                      ▼
+             Similarity Search
+                      │
+                      ▼
+             Prompt Construction
+                      │
+                      ▼
+                 Groq LLM
+                      │
+                      ▼
+                 Final Answer
 
 ```
 
@@ -52,154 +61,190 @@ Answer
 Backend
 
 - Node.js
-- JavaScript
+- JavaScript (ES Modules)
 
 AI
 
-- Gemini Embeddings
-- Groq
+- Gemini Embeddings API
+- Groq LLM
+
+Libraries
+
+- @google/genai
+- groq-sdk
+- @langchain/textsplitters
 
 Concepts
 
-- RAG
-- Semantic Search
 - Embeddings
+- Semantic Search
 - Cosine Similarity
+- RAG
 - Prompt Engineering
-
----
-
-## 📂 Architecture
-
-```
-
-CLI
-
-↓
-
-Retriever
-
-↓
-
-Vector Store
-
-↓
-
-Prompt Builder
-
-↓
-
-LLM
-
-↓
-
-Answer
-
-```
-
----
-
-## 📦 Folder Structure
-
-```
-
-src/
-├── chat/
-├── loaders/
-├── splitters/
-├── embeddings/
-├── retrieval/
-├── prompts/
-├── llm/
-├── persistence/
-├── vectorstore/
-
-```
-
----
-
-## 🧠 AI Pipeline
-
-1. User enters a question.
-
-2. Question is converted into an embedding.
-
-3. Similar documents are retrieved.
-
-4. Retrieved context is combined into a prompt.
-
-5. Groq generates a grounded answer.
-
-6. Source files are displayed.
-
----
-
-## 📚 Concepts Used
-
-- Embeddings
-- Semantic Search
+- Chunking
 - Vector Search
-- Retrieval
-- Prompt Engineering
-- Context Injection
-- Similarity Ranking
-- Hallucination Reduction
 
 ---
 
-## 📸 Sample Output
+## 📂 Project Structure
 
 ```
 
-Ask a question:
+project-01-rag-chat/
+│
+├── docs/
+│   ├── express.md
+│   ├── jwt.md
+│   └── nodejs.md
+│
+├── src/
+│   ├── loaders/
+│   ├── splitters/
+│   ├── embeddings/
+│   ├── retrieval/
+│   ├── prompts/
+│   ├── llm/
+│   ├── persistence/
+│   ├── cache/
+│   ├── vectorstore/
+│   ├── chat/
+│   └── index.js
+│
+├── package.json
+└── README.md
 
-What is Express?
+```
 
-Retrieved Sources
+---
 
-express.md
+## ⚙ Pipeline
+
+### 1. Load Documents
+
+Reads all Markdown files from the docs directory.
+
+↓
+
+### 2. Split Documents
+
+Uses Recursive Character Text Splitter to create overlapping chunks.
+
+↓
+
+### 3. Generate Embeddings
+
+Each chunk is converted into a high-dimensional embedding vector using Gemini.
+
+↓
+
+### 4. Cache Embeddings
+
+Embeddings are stored locally to avoid recomputation.
+
+↓
+
+### 5. Embed User Query
+
+The user's question is embedded using the same embedding model.
+
+↓
+
+### 6. Semantic Search
+
+Cosine Similarity retrieves the most relevant chunks.
+
+↓
+
+### 7. Prompt Construction
+
+Retrieved context + user question are combined into a structured prompt.
+
+↓
+
+### 8. Answer Generation
+
+Groq generates the final grounded response.
+
+---
+
+## 🧠 Concepts Implemented
+
+- Retrieval-Augmented Generation
+- Embeddings
+- Vector Space
+- Cosine Similarity
+- Semantic Search
+- Chunking
+- Metadata
+- Retrieval Pipeline
+- Prompt Engineering
+- Hallucination Reduction
+- Embedding Cache
+
+---
+
+## 💻 Example
+
+Question
+
+```
+
+What is JWT?
+
+```
+
+Retrieved Context
+
+```
+
+jwt.md
+
+Score: 0.71
+
+```
 
 Answer
 
-Express.js is a minimal and flexible web framework for Node.js...
+```
+
+JWT is a compact, URL-safe token format used for securely transferring claims between parties.
 
 ```
 
 ---
 
-## 🚀 Future Enhancements
+## 🚀 Future Improvements
 
-- Conversation Memory
-- Multi-turn Chat
-- PDF Support
-- Website Support
-- Chroma Vector DB
+- PDF Loader
+- Website Loader
+- Chroma DB
+- Pinecone
 - FAISS
-- LangChain
-- LangGraph
-- Streaming
-- Web Interface
+- Hybrid Search
+- Multi Query Retrieval
+- Metadata Filtering
+- Streaming Responses
+- Web UI
+- Authentication
 
 ---
 
 ## 📈 Resume Highlights
 
-- Built an interactive AI assistant using Node.js and LLM APIs.
-- Implemented semantic retrieval with embeddings and cosine similarity.
-- Designed a modular AI pipeline separating ingestion, retrieval, prompting, and generation.
-- Improved response quality through retrieval-based context injection and configurable relevance thresholds.
+- Built a Retrieval-Augmented Generation (RAG) application from scratch using Node.js.
+- Implemented document loading, recursive chunking, embedding generation, cosine similarity search, prompt construction, and answer generation.
+- Reduced embedding recomputation by introducing persistent vector caching.
+- Integrated Gemini Embeddings and Groq LLM to generate grounded responses with source attribution.
 
 ---
 
-## 🎯 Learning Outcomes
+## 📚 Learning Outcomes
 
-Through this project I learned:
+This project helped me understand:
 
-- Building end-to-end AI applications
-- Working with embeddings
-- Semantic retrieval
-- Retrieval-Augmented Generation
-- Prompt construction
-- LLM orchestration
-- AI application architecture
-git init
+- How embeddings work
+- Why semantic search outperforms keyword search
+- How vector search powers RAG systems
+- How prompts are constructed
+- How LLMs are grounded using retrieved context
+- How production RAG pipelines are organized
